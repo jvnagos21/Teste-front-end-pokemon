@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { LogoText, PokemonLogo, StyledIcon } from "../Logo";
-import { ScheduleButton, InfoDiv, AboutUs } from "../Info";
+import { LogoText, PokemonLogo, StyledIcon } from "../Logo/Index";
+import { ScheduleButton, InfoDiv, AboutUs } from "../Info/Index";
+import Link from "next/link";
 
 const HeaderWrapper = styled.header`
+  width: full;
   height: 104px;
   background-color: #fffff;
   display: flex;
@@ -11,14 +13,9 @@ const HeaderWrapper = styled.header`
   align-items: center;
 `;
 
-const Header: React.FC = () => {
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
+const Header = () => {
   return (
-    <HeaderWrapper key={mounted ? "client" : "server"}>
+    <HeaderWrapper>
       <PokemonLogo>
         <StyledIcon
           src="/images/white-pokeball.svg"
@@ -29,8 +26,12 @@ const Header: React.FC = () => {
         <LogoText>Centro Pokémon</LogoText>
       </PokemonLogo>
       <InfoDiv>
-        <AboutUs>Quem Somos</AboutUs>
-        <ScheduleButton>Agendar Consulta</ScheduleButton>
+        <Link href="/about-us">
+          <AboutUs>Quem Somos</AboutUs>
+        </Link>
+        <Link href="/schedule">
+          <ScheduleButton>Agendar Consulta</ScheduleButton>
+        </Link>
       </InfoDiv>
     </HeaderWrapper>
   );

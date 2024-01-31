@@ -10,6 +10,7 @@ const InfoDiv = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
+  margin-left: 1000px;
 `;
 
 const AboutUs = styled.span`
