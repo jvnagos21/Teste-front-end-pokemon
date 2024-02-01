@@ -20,7 +20,7 @@ const Footer = () => {
   return (
     <FooterContainer>
       <FooterText>
-        Todas as marcas e ilustrações utilizadas são de seus resepctivos donos.
+        Todas as marcas e ilustrações utilizadas são de seus respectivos donos.
       </FooterText>
     </FooterContainer>
   );

@@ -16,6 +16,7 @@ const HeaderWrapper = styled.header`
 const Header = () => {
   return (
     <HeaderWrapper>
+      <Link href="/"></Link>
       <PokemonLogo>
         <StyledIcon
           src="/images/white-pokeball.svg"
@@ -26,7 +27,7 @@ const Header = () => {
         <LogoText>Centro Pokémon</LogoText>
       </PokemonLogo>
       <InfoDiv>
-        <Link href="/about-us">
+        <Link href="/about_us">
           <AboutUs>Quem Somos</AboutUs>
         </Link>
         <Link href="/schedule">
