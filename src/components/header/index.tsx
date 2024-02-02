@@ -1,41 +1,25 @@
-import React from "react";
-import styled from "styled-components";
-import { LogoText, PokemonLogo, StyledIcon } from "../Logo/Index";
-import { ScheduleButton, InfoDiv, AboutUs } from "../Info/Index";
-import Link from "next/link";
+import { HeaderStyle } from "./style";
 
-const HeaderWrapper = styled.header`
-  width: full;
-  height: 104px;
-  background-color: #fffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Header = () => {
+export const Header = () => {
   return (
-    <HeaderWrapper>
-      <Link href="/"></Link>
-      <PokemonLogo>
-        <StyledIcon
-          src="/images/white-pokeball.svg"
-          alt="pokeball_icon"
-          width={37}
-          height={34}
-        />
-        <LogoText>Centro Pokémon</LogoText>
-      </PokemonLogo>
-      <InfoDiv>
-        <Link href="/about_us">
-          <AboutUs>Quem Somos</AboutUs>
-        </Link>
-        <Link href="/schedule">
-          <ScheduleButton>Agendar Consulta</ScheduleButton>
-        </Link>
-      </InfoDiv>
-    </HeaderWrapper>
+    <>
+      <HeaderStyle>
+        <div>
+          <div>
+            <img
+              src="./images/white-pokeball.svg"
+              alt="Imagem de uma pokebola"
+            />
+          </div>
+          <div>
+            <h1>Centro Pokémon</h1>
+          </div>
+        </div>
+        <nav>
+          <a href="">Quem somos</a>
+          <a href="">Agendar consulta</a>
+        </nav>
+      </HeaderStyle>
+    </>
   );
 };
-
-export default Header;

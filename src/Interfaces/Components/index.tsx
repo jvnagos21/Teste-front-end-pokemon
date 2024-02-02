@@ -6,6 +6,11 @@ export interface IForm {
   dates: string[];
 }
 
+export interface IBottomHeader {
+  section: string;
+  description: string;
+}
+
 export interface IInput {
   valueLabel: string;
   idInPut: string;

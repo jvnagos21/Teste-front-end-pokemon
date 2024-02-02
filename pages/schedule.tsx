@@ -1,34 +1,54 @@
-import React from "react";
-import { NextPage } from "next";
-import Header from "../src/components/Header/Index";
-import Footer from "../src/components/Footer/Index";
-import AboutUsContent from "../src/components/AboutUsContent";
-import {
-  Box,
-  BoxContainer,
-  BoxContentInferior,
-  BoxContentSuperiorLeft,
-  BoxContentTitle,
-} from "../src/components/redBox";
+import axios, { AxiosResponse } from "axios";
 import { PokemonForm } from "../src/components/pokemonForm";
+import { BottomHeader } from "../src/components/bottomHeader";
+import { TDate, IRegion, IScheduleProps } from "../src/Interfaces/Pages";
+import DefaultPage from "../src/components/DefaultPage";
 
-const Schedule: NextPage = () => {
+import styled from "styled-components";
+
+export const Main = styled.main`
+  height: 100%;
+`;
+
+const SchedulePage = ({ regions, dates }: IScheduleProps) => {
   return (
-    <div>
-      <Header />
-      <Box>
-        <BoxContainer>
-          <BoxContentSuperiorLeft>Home Quem somos</BoxContentSuperiorLeft>
-          <BoxContentTitle>Agendar Consulta</BoxContentTitle>
-          <BoxContentInferior>
-            Recupere seus pokémons em 5 segundos
-          </BoxContentInferior>
-        </BoxContainer>
-      </Box>
-      <PokemonForm regions={regions} dates={dates} />
-      <Footer />
-    </div>
+    <>
+      <DefaultPage>
+        <BottomHeader
+          section="Agendar consulta"
+          description="Recupere seus pokémons em 5 segundos"
+        />
+        <Main>
+          <PokemonForm regions={regions} dates={dates} />
+        </Main>
+      </DefaultPage>
+    </>
   );
 };
 
-export default Schedule;
+export async function getServerSideProps() {
+  try {
+    const regionsResponse: AxiosResponse<{ results: IRegion[] }> =
+      await axios.get("https://pokeapi.co/api/v2/region/");
+    const regions: IRegion[] = regionsResponse.data.results;
+
+    const datesResponse: AxiosResponse<TDate> = await axios.get(
+      "http://localhost:3000/api/scheduling/date/"
+    );
+    const dates: TDate = datesResponse.data;
+
+    return {
+      props: { regions, dates },
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+
+    return {
+      props: {
+        error: "An error occurred while fetching data.",
+      },
+    };
+  }
+}
+
+export default SchedulePage;

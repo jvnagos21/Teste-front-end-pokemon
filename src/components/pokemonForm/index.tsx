@@ -36,6 +36,7 @@ export const PokemonForm = ({ regions, dates }: IForm) => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
   const onSubmit = (payload: IInfoSchedule) => {
     console.log(payload);
   };
@@ -66,19 +67,18 @@ export const PokemonForm = ({ regions, dates }: IForm) => {
         ]);
       } else {
         selectsPokemon.length === 6
-          ? toast.error("Limite de Pokémons excedido")
-          : toast.error("a cidade não possui pokemons");
+          ? toast.error("Limite de pokémons alcançado")
+          : toast.error("A cidade não tem pokémons");
       }
     } else {
       toast.error("Selecione primeiro uma cidade");
     }
   };
 
-  const getAllCities = async (region: string) => {
+  const getCities = async (region: string) => {
     if (!region) {
       setCities([]);
     }
-
     if (region) {
       setCities([]);
       try {
@@ -87,7 +87,7 @@ export const PokemonForm = ({ regions, dates }: IForm) => {
         );
         setCities(data.locations);
       } catch (error) {
-        console.log("erro ao buscar as cidades", error);
+        console.log("Erro ao buscar as cidades", error);
       }
     }
   };
@@ -117,7 +117,7 @@ export const PokemonForm = ({ regions, dates }: IForm) => {
     }
   };
 
-  const getDate = async (date: string) => {
+  const getHours = async (date: string) => {
     if (!date) {
       setHours([]);
     }
@@ -134,18 +134,19 @@ export const PokemonForm = ({ regions, dates }: IForm) => {
     }
   };
 
-  const getRegion = () => {
+  const getGenerationRegion = () => {
     const region = watch("region");
     const index = regions.findIndex((element) => element.name === region);
 
-    const pokemonObject = {
+    const pokemonObj = {
       region: region,
       generation: index + 1,
     };
+
     allPokemons &&
       setMyPokemonsRegionGeneration([
         ...myPokemonsRegionGeneration,
-        pokemonObject,
+        pokemonObj,
       ]);
   };
 
@@ -167,7 +168,7 @@ export const PokemonForm = ({ regions, dates }: IForm) => {
 
   return (
     <ContainerForm>
-      <form action="" onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} action="">
         <h3>Preencha o formulário abaixo para agendar sua consulta</h3>
         <section>
           <Input
@@ -175,27 +176,27 @@ export const PokemonForm = ({ regions, dates }: IForm) => {
             valueLabel="Nome"
             idInPut="name"
             typeInput="text"
-            placeholder="digite seu nome"
+            placeholder="Digite seu nome"
           />
           <Input
             {...register("surname")}
             valueLabel="Sobrenome"
             idInPut="surname"
             typeInput="text"
-            placeholder="digite seu sobrenome"
+            placeholder="Digite seu sobrenome"
           />
           <Select
             {...register("region")}
+            callBack={getCities}
             valueLabel="Região"
-            callBack={getAllCities}
             idSelect="region"
             options={regions.map((element) => element.name)}
             optionDefault="Selecione uma região"
           />
           <Select
             {...register("city")}
-            valueLabel="Ciddade"
             callBack={getAllPokemons}
+            valueLabel="Cidade"
             idSelect="city"
             options={cities.map((element: { name: string }) => element.name)}
             optionDefault={
@@ -203,6 +204,7 @@ export const PokemonForm = ({ regions, dates }: IForm) => {
                 ? "Selecione uma cidade"
                 : "Selecione primeiro uma região"
             }
+            isDisable={cities.length ? false : true}
           />
         </section>
         <section>
@@ -219,7 +221,8 @@ export const PokemonForm = ({ regions, dates }: IForm) => {
             type="button"
             $addPokemon={true}
             onClick={() => {
-              getGenerationAndRate(), createSelectPokemon();
+              getGenerationRegion();
+              createSelectPokemon();
             }}
           >
             Adicionar novo pokémon ao time
@@ -228,7 +231,7 @@ export const PokemonForm = ({ regions, dates }: IForm) => {
         <section>
           <Select
             {...register("date")}
-            callBack={getDate}
+            callBack={getHours}
             valueLabel="Data para atendimento"
             idSelect="dateSchedule"
             options={dates}
@@ -258,13 +261,21 @@ export const PokemonForm = ({ regions, dates }: IForm) => {
               </p>
             </div>
             <div>
-              <p>Atendimento unitário por pokémon</p>
+              <p>Atendimento unitário por pokémon: </p>
               <p>R$ 70,00</p>
             </div>
             <div>
-              <p>Taxa geracional*: </p>
-              <p>R$ {rateValue ? rateValue.toFixed(2) : "0,00"}</p>
+              <p>Subtotal:</p>
+              <p>R$ {selectsPokemon.length * 70}</p>
             </div>
+            <div>
+              <p>Taxa geracional*: </p>
+              <p>R$ {rateValue ? rateValue.toFixed(2) : "0.00"}</p>
+            </div>
+            <p>
+              *adicionamos uma taxa de 3%, multiplicado pelo número da geração
+              mais alta do time, com limite de até 30%
+            </p>
           </div>
           <div>
             <p>
@@ -276,6 +287,7 @@ export const PokemonForm = ({ regions, dates }: IForm) => {
                   ).toFixed(2)
                 : "0.00"}
             </p>
+            <Button type="submit">Concluir Agendamento</Button>
           </div>
         </section>
       </form>

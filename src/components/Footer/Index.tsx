@@ -1,28 +1,29 @@
 import styled from "styled-components";
 
-const FooterContainer = styled.div`
-  width: 100vw;
-  height: 72px;
+export const FooterStyle = styled.footer`
   display: flex;
-  justify-content: center;
   align-items: center;
-  text-align: center;
-  background: #1d1d1d;
-`;
+  justify-content: center;
+  width: 100%;
+  height: 72px;
+  background-color: #1d1d1d;
 
-const FooterText = styled.h1`
-  color: black;
-  font-size: 14px;
-  color: #ffffff;
+  > p {
+    width: 80%;
+    text-align: center;
+    line-height: 20px;
+    font-size: var(--description-size-14);
+    font-weight: var(--weight-medium);
+    color: #ffffff;
+  }
 `;
-
 const Footer = () => {
   return (
-    <FooterContainer>
-      <FooterText>
+    <FooterStyle>
+      <p>
         Todas as marcas e ilustrações utilizadas são de seus respectivos donos.
-      </FooterText>
-    </FooterContainer>
+      </p>
+    </FooterStyle>
   );
 };
 
