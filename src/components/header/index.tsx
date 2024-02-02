@@ -16,8 +16,8 @@ export const Header = () => {
           </div>
         </div>
         <nav>
-          <a href="">Quem somos</a>
-          <a href="">Agendar consulta</a>
+          <a href={"/about_us"}>Quem somos</a>
+          <a href={"/schedule"}>Agendar consulta</a>
         </nav>
       </HeaderStyle>
     </>
