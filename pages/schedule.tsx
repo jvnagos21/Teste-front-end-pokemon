@@ -10,24 +10,25 @@ import {
   BoxContentSuperiorLeft,
   BoxContentTitle,
 } from "../src/components/redBox";
+import { PokemonForm } from "../src/components/pokemonForm";
 
-const AboutUs: NextPage = () => {
+const Schedule: NextPage = () => {
   return (
     <div>
       <Header />
       <Box>
         <BoxContainer>
           <BoxContentSuperiorLeft>Home Quem somos</BoxContentSuperiorLeft>
-          <BoxContentTitle>Quem Somos</BoxContentTitle>
+          <BoxContentTitle>Agendar Consulta</BoxContentTitle>
           <BoxContentInferior>
-            A maior rede de tratamento pokémon.
+            Recupere seus pokémons em 5 segundos
           </BoxContentInferior>
         </BoxContainer>
       </Box>
-      <AboutUsContent />
+      <PokemonForm regions={regions} dates={dates} />
       <Footer />
     </div>
   );
 };
 
-export default AboutUs;
+export default Schedule;
