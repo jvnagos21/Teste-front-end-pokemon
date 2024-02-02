@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { PokemonForm } from "../src/components/pokemonForm";
-import { BottomHeader } from "../src/components/bottomHeader";
+import { BottomHeader } from "../src/components/BottomBox";
 import { TDate, IRegion, IScheduleProps } from "../src/Interfaces/Pages";
 import DefaultPage from "../src/components/DefaultPage";
 
