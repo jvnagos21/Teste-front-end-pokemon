@@ -1,15 +1,15 @@
-import React from "react";
-import { IInput } from "../../Interfaces/Components";
-import { ContainerInput } from "./Styles";
+import React from "react"
+import { IInput } from "../../Interfaces/Components"
+import { ContainerInput } from "./Styles"
 
 const Input = React.forwardRef<HTMLInputElement, IInput>(
-  ({ valueLabel, idInPut, typeInput, placeholder, ...rest }, ref) => {
+  ({ valueLabel, idInput, typeInput, placeholder, ...rest }, ref) => {
     return (
       <>
         <ContainerInput>
-          <label htmlFor={idInPut}>{valueLabel}</label>
+          <label htmlFor={idInput}>{valueLabel}</label>
           <input
-            id={idInPut}
+            id={idInput}
             type={typeInput}
             placeholder={placeholder}
             ref={ref}
@@ -17,10 +17,10 @@ const Input = React.forwardRef<HTMLInputElement, IInput>(
           />
         </ContainerInput>
       </>
-    );
+    )
   }
-);
+)
 
-Input.displayName = "Input";
+Input.displayName = "Input"
 
-export default Input;
+export default Input
