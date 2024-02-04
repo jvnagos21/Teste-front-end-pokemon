@@ -1,5 +1,7 @@
-import Footer from "../Footer/Index";
-import styled from "styled-components";
+import Footer from "../Footer/Index"
+import styled from "styled-components"
+import { Header } from "../Header/Index"
+import { IDefault } from "../../Interfaces/Pages"
 
 export const ContainerHome = styled.div`
   display: flex;
@@ -7,10 +9,8 @@ export const ContainerHome = styled.div`
   justify-content: space-between;
   width: 100vw;
   height: 100vh;
-`;
-
-import { Header } from "../Header/Index";
-const DefaultPage = ({ children, isHome }: any) => {
+`
+const DefaultPage = ({ children, isHome }: IDefault) => {
   return isHome ? (
     <ContainerHome>
       <Header />
@@ -23,7 +23,7 @@ const DefaultPage = ({ children, isHome }: any) => {
       {children}
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default DefaultPage;
+export default DefaultPage

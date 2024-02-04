@@ -1,43 +1,45 @@
-import { boolean } from "yup";
 import { IRegion } from "../Pages";
-
-export interface IForm {
-  regions: IRegion[];
-  dates: string[];
-}
+import { FieldError } from "react-hook-form";
 
 export interface IBottomHeader {
   section: string;
   description: string;
 }
 
-export interface IInput {
-  valueLabel: string;
-  idInPut: string;
-  typeInput: string;
-  placeholder: string;
-}
-
 export interface IButtonAddPokemon {
   $addPokemon?: boolean;
 }
 
-export interface IInfoSchedule {
-  name: string;
-  surname: string;
-  region: string;
-  city: string;
-  pokemons: (string | undefined)[];
-  date: string;
-  hour: string;
+export interface IInput {
+  valueLabel: string;
+  idInput: string;
+  typeInput: string;
+  placeholder: string;
+  error?: FieldError;
+}
+
+export interface ISelect {
+  valueLabel: string;
+  idSelect: string;
+  selectPokemon?: boolean;
+  isDisable?: boolean;
+  options: string[];
+  optionDefault: string;
+  callBack?: (region: string, length: number) => void;
+  error?: FieldError;
+}
+
+export interface ISelectPokemon {
+  $selectPokemon?: boolean;
+  $isDisable?: boolean;
+}
+
+export interface IForm {
+  regions: IRegion[];
+  dates: string[];
 }
 
 export interface ICity {
-  name: string;
-  url: string;
-}
-
-export interface IAreaCity {
   name: string;
   url: string;
 }
@@ -47,19 +49,26 @@ export interface IPokemon {
   url: string;
 }
 
-export interface ISelectPokemon {
-  $selectPokemon?: boolean;
-  $isDisable?: boolean;
+export interface IAreaCity {
+  name: string;
+  url: string;
 }
 
-export type THour = string[];
-
-export interface ISelect {
-  valueLabel: string;
-  idSelect: string;
-  selectPokemon?: boolean;
-  isDisable?: boolean;
-  options: string[];
-  optionDefault: string;
-  callBack?: (region: string, Length: number) => void;
+export interface IInfoSchedule {
+  name: string;
+  surname: string;
+  region: string;
+  city: string;
+  pokemons?: (string | undefined)[];
+  schedule: {
+    date: string;
+    time: string;
+  };
 }
+
+export type ISchedule = {
+  date: string;
+  time: string;
+};
+
+export type TTime = string[];

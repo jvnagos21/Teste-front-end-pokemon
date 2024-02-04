@@ -1,7 +1,7 @@
-import React from "react";
-import { BottomHeader } from "../../src/components/BottomBox";
-import DefaultPage from "../../src/components/DefaultPage/Index";
-import { Main } from "./styles";
+import React from "react"
+import { BottomHeader } from "../../src/components/BottomBox"
+import DefaultPage from "../../src/components/DefaultPage/Index"
+import { Main } from "./styles"
 
 const About = () => {
   return (
@@ -84,7 +84,7 @@ const About = () => {
         </Main>
       </DefaultPage>
     </>
-  );
-};
+  )
+}
 
-export default About;
+export default About

@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const FooterStyle = styled.footer`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 72px;
+  min-height: 72px;
   background-color: #1d1d1d;
 
   > p {
@@ -16,7 +16,7 @@ export const FooterStyle = styled.footer`
     font-weight: var(--weight-medium);
     color: #ffffff;
   }
-`;
+`
 const Footer = () => {
   return (
     <FooterStyle>
@@ -24,7 +24,7 @@ const Footer = () => {
         Todas as marcas e ilustrações utilizadas são de seus respectivos donos.
       </p>
     </FooterStyle>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

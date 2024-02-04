@@ -1,8 +1,8 @@
-import React from "react";
-import ImageHome from "../public/images/pokemon-hero.jpg";
-import Image from "next/image";
-import styled from "styled-components";
-import DefaultPage from "../src/components/DefaultPage";
+import React from "react"
+import ImageHome from "../public/images/pokemon-hero.jpg"
+import Image from "next/image"
+import styled from "styled-components"
+import DefaultPage from "../src/components/DefaultPage/Index"
 
 export const Main = styled.main`
   height: 100%;
@@ -33,7 +33,7 @@ export const Main = styled.main`
     min-height: 720px;
     object-fit: cover;
   }
-`;
+`
 
 const Home = () => {
   return (
@@ -47,7 +47,7 @@ const Home = () => {
         </Main>
       </DefaultPage>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

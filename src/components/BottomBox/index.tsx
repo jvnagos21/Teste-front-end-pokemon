@@ -1,6 +1,7 @@
 import { IoChevronForwardOutline } from "react-icons/io5";
 import { BottomHeaderStyle } from "./style";
 import { IBottomHeader } from "../../Interfaces/Components";
+import ActiveLink from "../ActiveLink/Index";
 
 export const BottomHeader = ({ section, description }: IBottomHeader) => {
   return (
@@ -8,7 +9,7 @@ export const BottomHeader = ({ section, description }: IBottomHeader) => {
       <BottomHeaderStyle>
         <div>
           <div>
-            <p>Home</p>
+            <ActiveLink href="/">Home</ActiveLink>
             <p>
               <IoChevronForwardOutline />
             </p>

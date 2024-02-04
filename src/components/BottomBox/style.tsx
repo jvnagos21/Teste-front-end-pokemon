@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const BottomHeaderStyle = styled.section`
   display: flex;
   width: 100%;
-  height: 187px;
+  min-height: 187px;
   color: #ffffff;
   background-color: #e40f0f;
 
@@ -20,6 +20,19 @@ export const BottomHeaderStyle = styled.section`
       display: flex;
       align-items: center;
       gap: 5px;
+
+      > a:nth-child(1) {
+        font-size: var(--small-size-12);
+        font-weight: var(--weight-bold);
+        color: #ffffff;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      > a:nth-child(1):hover {
+        color: #ffffff80;
+        transition: 0.2s;
+      }
 
       > p {
         height: 12px;

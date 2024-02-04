@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ISelect } from "../../Interfaces/Components";
 import { MdExpandMore } from "react-icons/md";
 import { MdExpandLess } from "react-icons/md";
-import { DivLabelSelect } from "./styles";
+import { DivLabelSelect } from "./Styles";
 
 const Select = React.forwardRef<HTMLSelectElement, ISelect>(
   (
@@ -14,6 +14,7 @@ const Select = React.forwardRef<HTMLSelectElement, ISelect>(
       callBack,
       optionDefault,
       isDisable,
+      error,
       ...rest
     },
     ref
@@ -35,7 +36,7 @@ const Select = React.forwardRef<HTMLSelectElement, ISelect>(
       return () => {
         document.removeEventListener("click", handleClick);
       };
-    }, [callBack, expandToggleArrow, idSelect]);
+    }, [expandToggleArrow]);
 
     return (
       <>
@@ -57,6 +58,7 @@ const Select = React.forwardRef<HTMLSelectElement, ISelect>(
               );
             })}
           </select>
+          {error && <p className="error">* {error.message?.toString()}</p>}
           {expandToggleArrow ? (
             <div>
               <MdExpandLess />
