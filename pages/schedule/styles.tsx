@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import styled from "styled-components"
+import React from "react"
 
-export const Main = styled.main`
+const Main = styled.main`
   width: 100%;
 
   > section {
@@ -57,4 +58,6 @@ export const Main = styled.main`
       height: 42px;
     }
   }
-`;
+`
+
+export default Main

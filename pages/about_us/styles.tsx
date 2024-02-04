@@ -1,6 +1,7 @@
 import styled from "styled-components"
+import React from "react"
 
-export const Main = styled.main`
+const Main = styled.main`
   height: 100%;
 
   > div {
@@ -28,3 +29,4 @@ export const Main = styled.main`
     }
   }
 `
+export default Main
