@@ -1,7 +1,7 @@
 import React from "react"
 import { BottomHeader } from "../../src/components/BottomBox"
 import DefaultPage from "../../src/components/DefaultPage/Index"
-import { Main } from "./styles"
+import Main from "./styles"
 
 const About = () => {
   return (
